@@ -4,18 +4,18 @@ services:
   - docker
 
 before_install:
-  - docker build -t andrewborges/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t andrewlborges/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true andrewborges/react-test npm test
+  - docker run -e CI=true andrewlborges/react-test npm test
 
 after_success:
-  - docker build -t andrewborges/multi-client ./client
-  - docker build -t andrewborges/multi-nginx ./nginx
-  - docker build -t andrewborges/multi-server ./server
-  - docker build -t andrewborges/multi-worker ./worker
+  - docker build -t andrewlborges/multi-client ./client
+  - docker build -t andrewlborges/multi-nginx ./nginx
+  - docker build -t andrewlborges/multi-server ./server
+  - docker build -t andrewlborges/multi-worker ./worker
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  - docker push andrewborges/multi-client
-  - docker push andrewborges/multi-nginx
-  - docker push andrewborges/multi-server
-  - docker push andrewborges/multi-worker
+  - docker push andrewlborges/multi-client
+  - docker push andrewlborges/multi-nginx
+  - docker push andrewlborges/multi-server
+  - docker push andrewlborges/multi-worker
